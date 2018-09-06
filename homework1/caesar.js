@@ -11,15 +11,14 @@ for (let i = 0; i < message.length; i++) {
         messageSplit[i] = letters[0]
         console.log(i)
         console.log(messageSplit[i])
-        break
-    }
+}
     else {
         for (let j = 0; j < letters.length || letters[j] == messageSplit[i]; j++) { //Перебираем шифровой массив, пока буква из сообщения не будет такой же
             if(letters[j] == messageSplit[i]){
                 messageSplit[i] = letters [j+1] // И присваиваем ей иное значение
                 break
             }
-            else if(j == letters.length){
+            else if(j == letters.length){ //отсеиваем и не шифруем любые символы, не представленные в шифромассиве
                 break
             }
         console.log(messageSplit[i])
