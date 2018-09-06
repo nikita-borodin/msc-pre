@@ -9,8 +9,6 @@ messageSplit = message.split(''); //Разбиваем сообщение на �
 for (let i = 0; i < message.length; i++) {
     if (messageSplit[i] == letters[letters.length-1]){ //Проверяем, не идет ли сейчас в сообщении последняя буква из шифрового массива, если идет, то присваиваем ей нулевую букву из него
         messageSplit[i] = letters[0]
-        console.log(i)
-        console.log(messageSplit[i])
 }
     else {
         for (let j = 0; j < letters.length || letters[j] == messageSplit[i]; j++) { //Перебираем шифровой массив, пока буква из сообщения не будет такой же
@@ -21,13 +19,11 @@ for (let i = 0; i < message.length; i++) {
             else if(j == letters.length){ //отсеиваем и не шифруем любые символы, не представленные в шифромассиве
                 break
             }
-        console.log(messageSplit[i])
-        console.log(j)
         }
     }
 }
 
-let messageScript = messageSplit.join('');
-alert('Зашифрованное сообещение: '+ messageScript);
+let messageScript = messageSplit.join(''); //собираем сообщение обратно
+alert('Зашифрованное сообщение: '+ messageScript); //выдаем результат
 
 
