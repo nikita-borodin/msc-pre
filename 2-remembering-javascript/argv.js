@@ -1,16 +1,15 @@
-console.log(process.argv);
+console.log(process.argv); //Выводим то, что получаем в процессе
 
-const numbers = process.argv.slice(2);
-console.log('Аргументы:', numbers);
+const numbers = process.argv.slice(2); //Создаем константу, в которую записываем все значения аргументов со второго (минуя запрос запуска node и название файла)
+console.log('Аргументы:', numbers); //Выводим аргументы в консоль
 
-let sum = 0;
+let sum = 0;//Задаем переменную, в которой будем суммировать значения аргументов
 
-for (i = 0; i < numbers.length; i++) {
+for (i = 0; i < numbers.length; i++) {//Задаем цикл, который перебирает массив аргументов
     
-    sum = sum + parseInt(numbers[i], 10);
+    sum = sum + parseInt(numbers[i], 10); //Приводим строчные значения аргументов массива к числовому виду в десятичной системе и суммируем с результатом предыдущего  //Выводим общую сумму
 }
-console.log('Sum:', sum);
 
-let average = sum/numbers.length;
+let average = sum/numbers.length; //Считаем среднее
 
-console.log('Avg:', average);
+console.log('Avg:', average); // Выводим среднее
