@@ -1,7 +1,11 @@
-const Person = require('./person.class'); //Подключаем модуль, который написали
+const user = require("./user.class.js"); //Подключаем модуль с описанием класса user
+const admin = require("./admin.class.js"); //Подключаем модуль с описанием класса admin
 
-const person = new Person('Tim', 'Heidecker'); //Отправляем в модуль данные на обработку, модуль возвращает обработанные данные
+let newUser = new user("Vault", "Dweller"); //стучимся в файл user.class.js, передаем туда два аргумента, файл отрабатывает и выдает нам сконструированного юзера с соответствующим именем
+let newAdmin = new admin ("The", "One");
 
-console.log(person.getFullName()); //Вызываем функцию из модуля
+newUser.login(); //Запускаем процесс логина, описанный в файле класса
+newAdmin.login();
 
-// Зачем экспортировать функцию, если мы можем вызвать ее?
+console.log(newUser); //Выводим, что получилось
+console.log(newAdmin);
