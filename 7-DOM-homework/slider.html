@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Slider</title>
+  </head>
+  <body data-slides="1, 2, 3, 4, 5">
+    <script type="text/javascript">
+      (() => {
+          let slidesNmbr = document.body.dataset.dataSlides.split(', '); //Узнали, сколько у нас планируется слайдов из информации в метадате.
+          //Как это работает? Я тупо списал.
+
+          const $slider = document.createElement('div'); //Создали див, в который засунем слайдер
+          $slider.setAttribute('class', 'slider');
+          $slider.textContent = 'main div'; //и хде? почему не создается?
+          console.log($slider);
+
+          for (let i = 1; i <= slidesNmbr.length; i++){//Создаем картинки в слайдер
+          document.create.element('div')//А как ему сразу задать id и класс?
+          }
+                    
+          const $lBtn = document.createElement('button'); 
+          const $rBtn = document.createElement('button'); //Создали кнопки листания слайдов
+          $lBtn.textContent = '<'
+          $rBtn.textContent = '>' //Сделали кнопки, похожими на кнопки
+          //и хде они?
+
+          const $sliderPic = document.createElement('img'); //Создали картинку, которую засунем в слайдер
+          //Задаем созданной картинке какое-то свойство с ее номером
+
+          //Далее надо переместить эти элементы внутрь основного дива
+
+          //Надо задать картинке через CSS-свойства ширину, высоту и цвет, чтобы ее было видно
+
+          //Добавляем эвент лисенер клика на кнопки листания
+          
+          //при клике на кнопку листания меняется свойство картинки (ее номер), в соответствие с этим все картинки, у которых другой номер этого свойства - скрываются, а та, с чьей этот номер совпадает - появляется (CSS-display-none)
+
+          
+
+
+
+
+
+
+        // your code...
+      })();
+    </script>
+  </body>
+</html>
