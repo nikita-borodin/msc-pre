@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>CLASSWORK</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html,body{
+        width:100%;
+        height:100%;
+        margin:0;
+
+      }
+      aside{
+        height:100%;
+        width:20%;
+        left:0;
+        z-index:3;
+        position:fixed;
+        background-color: aliceblue;
+        display:none
+      }
+      .darklayer{
+        height:100%;
+        width:100%;
+        background-color: rgb(12, 11, 11);
+        opacity:0.7;
+        position:fixed;
+        display:none
+      }
+      button{
+
+        position:fixed;
+        left:50%;
+        top:50%;
+      }
+
+      .menu.active .darklayer {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <button>Click Me!</button>
+    <div class="darklayer"></div>
+    <aside>
+      <ol>
+          <li>A</li>
+          <li>B</li>
+          <li>C</li>
+          <li>D</li>
+          <li>E</li>
+      </ol>
+    </aside>
+
+    <script type="text/javascript">
+      (() => {
+        const $button = document.querySelector('button');
+        const $darklayer = document.querySelector('.darklayer');
+        const $aside = document.querySelector('aside');
+        $button.addEventListener('click',()=>{
+          $darklayer.style.display = 'block';
+          $aside.style.display = 'block';
+      })
+        $darklayer.addEventListener('click',()=>{
+          $darklayer.style.display = 'none';
+          $aside.style.display = 'none';
+      })
+        
+      })();
+    </script>
+  </body>
+</html>
