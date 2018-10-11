@@ -1,0 +1,136 @@
+<body>
+        <ul id="root"></ul>
+      
+        <form id="form">
+          <input type="text" placeholder="Название" required/>
+          <button type="submit">Сохранить</button>
+        </form>
+      
+        <script>
+          (() => {
+            const $root = document.getElementById('root');
+      
+            // Delete element
+            document.body.addEventListener('click', (event) => {
+              if (!event.target.hasAttribute('data-id')) return;
+      
+              // console.log(event.target.getAttribute('data-id'));
+              
+              fetch("http://localhost:3000/plants/" + event.target.getAttribute('data-id'),
+              {
+                method: 'DELETE'
+              })
+              .then(() => {
+                const $li = event.target.parentNode;
+                $li.parentNode.removeChild($li);
+              })
+      
+            })
+      
+            // Create new plant to API
+            const $form = document.getElementById('form');
+      
+            $form.addEventListener('submit', event => {
+              event.preventDefault();
+              const $input = $form.querySelector('input');
+              const data = {
+                name: $input.value,
+              };
+      
+              fetch('http://localhost:3000/plants', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+              }).then(response => response.json())
+                .then(plant => {
+                  $input.value = '';
+                  const $el = document.createElement('li');
+                  $el.textContent = plant.name;
+                  const $del = document.createElement('button');
+                  $del.type = 'button';
+                  $del.textContent = 'x';
+                  $del.setAttribute('data-id',plant.id);
+                  $el.append($del);
+                  $root.append($el);
+                });
+            });
+      
+            // Get plants from API
+            fetch('http://localhost:3000/plants')
+              .then(response => response.json())
+              .then(data => {
+                const $elements = data.map(plant => {
+                  const $el = document.createElement('li');
+                  $el.textContent = plant.name;
+                  const $del = document.createElement('button');
+                  $del.type = 'button';
+                  $del.textContent = 'x';
+                  $del.setAttribute('data-id',plant.id);
+                  $el.append($del);
+                  return $el;
+                });
+      
+                $elements.forEach($element => {
+                  $root.append($element);
+                });
+              });
+          })();
+        </script>
+      </body>
+
+
+<!-- <body>
+    <ul id='root'>
+
+    </ul>
+
+    <form id="form">
+            <input type="text" placeholder="Название"/>
+            <button type="submit">Сохранить</button>
+    </form>
+        <script>
+          (() => {
+            const $root = document.getElementById('root');
+
+            const $form = document.getElementById('form');
+            $form.addEventListener('submit', event =>{
+                event.preventDefault();
+                const $input = $form.querySelector('input');
+                const data = {name: $input.value,};
+                fetch ('http://localhost:3000/plants',{
+                    method: 'POST',
+                    headers:{
+                        'Content-Type': 'application/json'
+                    },
+                    body
+                })
+
+            });
+
+            fetch('http://localhost:3000/plants') //шо мы тут сделали? откуда такой адрес? почему такой адрес?
+            .then(response => response.json()) //возвращает чего-то там. чего возвращает? куда это записывается?
+            .then(data => {
+                const $elements = data.map(plant =>{
+                    const $el = document.createElement('li');
+                    $el.textContent = plant.name;
+                    return $el;
+                })
+                console.log($elements);
+                $elements.forEach($element =>{
+                    $root.append($element);
+                })
+            }); //а тут чего происходит?
+
+            //перебираем массив методом map или for each
+
+            //создаем на каждый элемент массива элемент li, где вписываем имя и вставляем картинку
+
+            //как записать в json что-то, что мы передаем через форму => смотри далее
+
+            
+
+          })();
+        </script>
+      </body> -->

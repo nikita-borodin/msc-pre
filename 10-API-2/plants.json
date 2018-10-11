@@ -1,0 +1,38 @@
+{
+  "plants": [
+    {
+      "id": "1",
+      "name": "Nolina",
+      "image": "https://i.ebayimg.com/images/g/sZ4AAOSwvGVa3T5h/s-l300.jpg"
+    },
+    {
+      "id": "2",
+      "name": "Alocasia",
+      "image": "https://www.ikea.com/kr/ko/images/products/alocasia-amazonica-allokasia-amasonika-sigmul__0548607_PE657323_S4.JPG"
+    },
+    {
+      "name": "mklamk",
+      "id": "UsHil_o"
+    },
+    {
+      "name": "mklamk",
+      "id": "u5pEVjJ"
+    },
+    {
+      "name": "mklamk",
+      "id": "8yYzBds"
+    },
+    {
+      "name": "mklamk",
+      "id": "hUuufHU"
+    },
+    {
+      "name": "mklamk",
+      "id": "kTQbC7h"
+    },
+    {
+      "name": "mklamk",
+      "id": "HNKTIgk"
+    }
+  ]
+}

@@ -7,28 +7,33 @@
   <body data-slides="1, 2, 3, 4, 5">
     <script type="text/javascript">
       (() => {
-          let slidesNmbr = document.body.dataset.dataSlides.split(', '); //Узнали, сколько у нас планируется слайдов из информации в метадате.
-          //Как это работает? Я тупо списал.
+          let slidesArr = document.body.dataset.slides.split(', '); //Узнали, сколько у нас планируется слайдов из информации в метадате. *часть 'data-' из метадаты при запросе опускается (ну просто так пишется)
 
           const $slider = document.createElement('div'); //Создали див, в который засунем слайдер
-          $slider.setAttribute('class', 'slider');
-          $slider.textContent = 'main div'; //и хде? почему не создается?
-          console.log($slider);
+          $slider.setAttribute('class', 'slider'); //добавили этому диву класс "слайдер", чтобы его можно было найти
+          $slider.textContent = 'main div'; //добавили текстовый контент просто чтобы видеть див
+          document.body.append($slider); //добавили созданный DIV в DOM методом append
+          // console.log($slider);
 
-          for (let i = 1; i <= slidesNmbr.length; i++){//Создаем картинки в слайдер
-          document.create.element('div')//А как ему сразу задать id и класс?
-          }
+          // for (let i = 1; i <= slidesArr.length; i++){//Создаем картинки в слайдер
+          // document.createElement('div')//А как ему сразу задать id и класс?
+          // } лучше не использовать такие цикловые переборы, воспользуемся методом map
+
+          // slidesArr.map(index => {
+          // const $el = document.createElement('div');
+          // $el.classList.add('pic'); - этот класс надо описать
+          // 
+          // })
                     
           const $lBtn = document.createElement('button'); 
           const $rBtn = document.createElement('button'); //Создали кнопки листания слайдов
           $lBtn.textContent = '<'
           $rBtn.textContent = '>' //Сделали кнопки, похожими на кнопки
-          //и хде они?
+          //добавляем в DOM
 
-          const $sliderPic = document.createElement('img'); //Создали картинку, которую засунем в слайдер
           //Задаем созданной картинке какое-то свойство с ее номером
 
-          //Далее надо переместить эти элементы внутрь основного дива
+          //Далее надо переместить эти элементы внутрь основного дива (append)
 
           //Надо задать картинке через CSS-свойства ширину, высоту и цвет, чтобы ее было видно
 
