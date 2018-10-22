@@ -35,7 +35,7 @@
               .then(response => response.json())
               .then(data => {
                   const $elements = data.map(brewery => {
-                  const $el = document.createElement('li'); //Почему я не могу написать $root.createElement('li'), чтобы создать элемент в корне?
+                  const $el = document.createElement('li');
                   $el.textContent = brewery.name;
                   // console.log(brewery);
                   return $el;
@@ -51,8 +51,8 @@
                   .then(response => response.json())
                   .then(data => {
                       const $elements = data.map(brewery => {
-                          const $el = document.createElement('li'); //Почему я не могу написать $root.createElement('li'), чтобы создать элемент в корне?
-                          $el.textContent = brewery.name;
+                          const $el = document.createElement('li');
+                          $el.textContent = Object.values(brewery); //берет из объекта, который мы передали аргументом все его содержимое и выводит строкой
                           console.log(brewery);
                           return $el;
                           });

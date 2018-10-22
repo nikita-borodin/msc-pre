@@ -8,6 +8,7 @@
         height: 100px;
         width: 100px;
         background-color: blue;
+        display: inline-block;
       }
 
       .slider {
@@ -36,17 +37,15 @@
 
           slidesArr.map(index => {
           const $el = document.createElement('div');
-          $el.setAttribute('class','pic'); //Этот класс надо описать через CSS
-          // $el.setAttribute('class','pic-hide'); //Не отображаем картинки
-            // другой класс срезается, но вроде же как-то можно добавлять несколько классов?
-
+          $el.setAttribute('class','pic pic-hide'); //Этот класс надо описать через CSS
+          //Лучше тут запилить через работу именно с классами
+          
           $el.id = slidesArr[index - 1]; //???Добавили к каждой картинке слайда аттрибут с ее номером (чтобы можно было потом их идентифицировать), я хз почему тут надо брать index - 1, но работает
-          // $el.style.zIndex = slidesArr[slidesArr.length - index]; //Добавили картинкам в стиль z-index
-          //   //Как сделать смену через z-index? А собственно, зачем?
+          // $el.style.zIndex = slidesArr[slidesArr.length - index];
+          //лучше не использовать id, а добавить дата-аттрибут с индексом
 
           document.body.append($el); // Добавили в боди все картинки
-          //добавляя после body $slider - я ничего внутри него не получаю, как не получаю и ошибки
-          //А как их сразу в слайдер нормально засунуть?
+          $slider.appendChild($el) // перенесли картинки из боди в див слайдера
           // Какое CSS-свойство прописать, чтобы они располагались слева направо?
           })
                     
@@ -58,22 +57,42 @@
           document.body.append($rBtn);
           $lBtn.setAttribute('class', 'lBtn');
           $rBtn.setAttribute('class', 'rBtn');
-          //Надо перенести кнопки в основной див, левую в начало, правую в конец
+          $slider.insertBefore($lBtn, $slider.childNodes[0]);
+          $slider.appendChild($rBtn);
+
           //Какие CSS-свойства для их расположения по центру?
 
           //Добавляем эвент лисенер клика на кнопки листания, а собственно, как?
-          
-          document.body.addEventListener('click', (event) => {
-            let currentPicIndex = 1; //А этот индекс теперь всегда изначально будет определяться и приравниваться к одному при клике на кнопку?
-            let $currentPic = document.querySelector(id = currentPicIndex);
+          let currentPicIndex = 4;
+          let $currentPic = document.getElementById(currentPicIndex);
+          console.log($currentPic);
+          $currentPic.classList.remove('pic-hide');
 
-            if (event.target.hasAttribute('lBtn')){
+          document.body.addEventListener('click', (event) => {
+        
+  
+            if (event.target.classList.contains('lBtn')){
+              $currentPic.classList.add('pic-hide');
+              console.log(currentPicIndex)
               //уменьшаем индекс на один
+              currentPicIndex--
               //Если индекс меньше нуля, приравниваем его к длине массива
+              
+              $currentPic = document.getElementById(currentPicIndex);
               //выключаем все картинки, отображаем ту, чей индекс тут
+              $currentPic.classList.remove('pic-hide');
+
             }
 
             if(event.target.hasAttribute('rBtn')){
+              $currentPic.classList.add('pic-hide');
+              //уменьшаем индекс на один
+              currentPicIndex++
+              //Если индекс меньше нуля, приравниваем его к длине массива
+              
+              $currentPic = document.getElementById(currentPicIndex);
+              //выключаем все картинки, отображаем ту, чей индекс тут
+              $currentPic.classList.remove('pic-hide');
               //увеличиваем индекс на один
               //Если индекс больше длины массива, приравниваем его к нулю
               //выключаем все картинки, отображаем ту, чей индекс тут
