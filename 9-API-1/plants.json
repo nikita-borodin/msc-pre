@@ -1,0 +1,19 @@
+{
+    "plants": [
+      {
+        "id": "1",
+        "name": "Nolina",
+        "image": "https://i.ebayimg.com/images/g/sZ4AAOSwvGVa3T5h/s-l300.jpg"
+      },
+      {
+        "id": "2",
+        "name": "Alocasia",
+        "image": "https://www.ikea.com/kr/ko/images/products/alocasia-amazonica-allokasia-amasonika-sigmul__0548607_PE657323_S4.JPG"
+      },
+      {
+        "id": "3",
+        "name": "Zamioculcas",
+        "image": "http://cdn.shopify.com/s/files/1/0662/5489/products/Zamioculcas_zamiifolia_-_ZZ_Plant_-_pistils_nursery_grande.jpg?v=1517943985"
+      }
+    ]
+  }

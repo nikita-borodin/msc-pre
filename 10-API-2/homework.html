@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Breweries</title>
+  </head>
+  <body>
+      <form id="form">
+        <input type="text" placeholder="Название"/>
+        <!-- создали поле ввода -->
+        <button id='button' type="submit">Поиск</button>
+        <!-- создали кнопку -->
+      </form>
+      
+      <ul id="root"></ul>
+      <!-- создали корневой элемент списка -->
+
+    <script type="text/javascript">
+      (() => {
+          const $root = document.getElementById('root'); //нашли корневой элемент списка
+          const $button = document.getElementById('button'); //Нашли кнопку
+          const $form = document.getElementById('form'); //Нашли форму
+
+          $form.addEventListener('submit', (event) => { //Вешаем отслеживание клика на кнопку
+            event.preventDefault();
+              const $input = $form.querySelector('input');
+              const data = {
+                name: $input.value,
+              };
+              
+              console.log($input.value)
+              //Если запрос пустой, то тупо фетчим
+              if(!$input.value){
+                fetch('https://api.openbrewerydb.org/breweries')
+              .then(response => response.json())
+              .then(data => {
+                  const $elements = data.map(brewery => {
+                  const $el = document.createElement('li');
+                  $el.textContent = brewery.name;
+                  // console.log(brewery);
+                  return $el;
+                });
+      
+                $elements.forEach($element => {
+                  $root.append($element);
+                });
+              });                                 
+            }
+              else {
+                  fetch('https://api.openbrewerydb.org/breweries?by_name=' + $input.value)
+                  .then(response => response.json())
+                  .then(data => {
+                      const $elements = data.map(brewery => {
+                          const $el = document.createElement('li');
+                          $el.textContent = Object.values(brewery); //берет из объекта, который мы передали аргументом все его содержимое и выводит строкой
+                          console.log(brewery);
+                          return $el;
+                          });
+      
+                      $elements.forEach($element => {
+                      $root.append($element);
+                      });
+                  });
+                }
+            })
+          })();
+    </script>
+  </body>
+</html>

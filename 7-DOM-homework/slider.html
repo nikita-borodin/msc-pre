@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Slider</title>
+    <style>
+      .pic {
+        height: 100px;
+        width: 100px;
+        background-color: blue;
+        display: inline-block;
+      }
+
+      .slider {
+
+      }
+
+      .pic-hide {
+        display: none
+      }
+
+      .pic-see {
+        display: block
+      }
+    </style>
+  </head>
+  <body data-slides="1, 2, 3, 4, 5">
+    <script type="text/javascript">
+      (() => {
+          let slidesArr = document.body.dataset.slides.split(', '); //Узнали, сколько у нас планируется слайдов из информации в метадате. *часть 'data-' из метадаты при запросе опускается (ну просто так пишется)
+
+          const $slider = document.createElement('div'); //Создали див, в который засунем слайдер
+          $slider.setAttribute('class', 'slider'); //добавили этому диву класс "слайдер", чтобы его можно было найти
+          document.body.append($slider); //добавили созданный DIV в DOM методом append
+          // console.log($slider);
+
+          slidesArr.forEach(index => {
+          const $el = document.createElement('div');
+          $el.setAttribute('class','pic pic-hide'); //Этот класс надо описать через CSS
+          //Лучше тут запилить через работу именно с классами
+          
+          $el.id = slidesArr[index - 1]; //???Добавили к каждой картинке слайда аттрибут с ее номером (чтобы можно было потом их идентифицировать), я хз почему тут надо брать index - 1, но работает
+          // $el.style.zIndex = slidesArr[slidesArr.length - index];
+          //лучше не использовать id, а добавить дата-аттрибут с индексом
+
+          document.body.append($el); // Добавили в боди все картинки
+          $slider.appendChild($el) // перенесли картинки из боди в див слайдера
+          // Какое CSS-свойство прописать, чтобы они располагались слева направо?
+          })
+                    
+          const $lBtn = document.createElement('button'); 
+          const $rBtn = document.createElement('button'); //Создали кнопки листания слайдов
+          $lBtn.textContent = '<'
+          $rBtn.textContent = '>' //Сделали кнопки, похожими на кнопки
+          document.body.append($lBtn);//Добавили кнопки в бади
+          document.body.append($rBtn);
+          $lBtn.setAttribute('class', 'lBtn');
+          $rBtn.setAttribute('class', 'rBtn');
+          $slider.insertBefore($lBtn, $slider.childNodes[0]);
+          $slider.appendChild($rBtn);
+
+          //Какие CSS-свойства для их расположения по центру?
+
+          //Добавляем эвент лисенер клика на кнопки листания, а собственно, как?
+          let currentPicIndex = 2;
+          let $currentPic = document.getElementById(currentPicIndex);
+          $currentPic.classList.remove('pic-hide');
+
+          document.body.addEventListener('click', (event) => {
+        
+  
+            if (event.target.classList.contains('lBtn')){
+              $currentPic.classList.add('pic-hide');
+              console.log(currentPicIndex)
+              //уменьшаем индекс на один
+              currentPicIndex--;
+              //Если индекс меньше нуля, приравниваем его к длине массива
+              if(currentPicIndex < 1){
+                currentPicIndex = slidesArr.length;
+              }
+              
+              $currentPic = document.getElementById(currentPicIndex);
+              //выключаем все картинки, отображаем ту, чей индекс тут
+              $currentPic.classList.remove('pic-hide');
+            }
+
+            if(event.target.classList.contains('rBtn')){
+              $currentPic.classList.add('pic-hide');
+              console.log(currentPicIndex)
+              currentPicIndex++;
+              if(currentPicIndex > slidesArr.length){
+                currentPicIndex = 1;
+              }
+              $currentPic = document.getElementById(currentPicIndex);
+              $currentPic.classList.remove('pic-hide');
+            }
+          })
+
+          //при клике на кнопку листания меняется свойство картинки (ее номер), в соответствие с этим все картинки, у которых другой номер этого свойства - скрываются, а та, с чьей этот номер совпадает - появляется (CSS-display-none)
+
+          
+
+
+
+
+
+
+        // your code...
+      })();
+    </script>
+  </body>
+</html>
