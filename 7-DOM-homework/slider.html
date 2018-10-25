@@ -31,11 +31,10 @@
 
           const $slider = document.createElement('div'); //Создали див, в который засунем слайдер
           $slider.setAttribute('class', 'slider'); //добавили этому диву класс "слайдер", чтобы его можно было найти
-          $slider.textContent = 'main div'; //добавили текстовый контент просто чтобы видеть див
           document.body.append($slider); //добавили созданный DIV в DOM методом append
           // console.log($slider);
 
-          slidesArr.map(index => {
+          slidesArr.forEach(index => {
           const $el = document.createElement('div');
           $el.setAttribute('class','pic pic-hide'); //Этот класс надо описать через CSS
           //Лучше тут запилить через работу именно с классами
@@ -63,9 +62,8 @@
           //Какие CSS-свойства для их расположения по центру?
 
           //Добавляем эвент лисенер клика на кнопки листания, а собственно, как?
-          let currentPicIndex = 4;
+          let currentPicIndex = 2;
           let $currentPic = document.getElementById(currentPicIndex);
-          console.log($currentPic);
           $currentPic.classList.remove('pic-hide');
 
           document.body.addEventListener('click', (event) => {
@@ -75,27 +73,26 @@
               $currentPic.classList.add('pic-hide');
               console.log(currentPicIndex)
               //уменьшаем индекс на один
-              currentPicIndex--
+              currentPicIndex--;
               //Если индекс меньше нуля, приравниваем его к длине массива
+              if(currentPicIndex < 1){
+                currentPicIndex = slidesArr.length;
+              }
               
               $currentPic = document.getElementById(currentPicIndex);
               //выключаем все картинки, отображаем ту, чей индекс тут
               $currentPic.classList.remove('pic-hide');
-
             }
 
-            if(event.target.hasAttribute('rBtn')){
+            if(event.target.classList.contains('rBtn')){
               $currentPic.classList.add('pic-hide');
-              //уменьшаем индекс на один
-              currentPicIndex++
-              //Если индекс меньше нуля, приравниваем его к длине массива
-              
+              console.log(currentPicIndex)
+              currentPicIndex++;
+              if(currentPicIndex > slidesArr.length){
+                currentPicIndex = 1;
+              }
               $currentPic = document.getElementById(currentPicIndex);
-              //выключаем все картинки, отображаем ту, чей индекс тут
               $currentPic.classList.remove('pic-hide');
-              //увеличиваем индекс на один
-              //Если индекс больше длины массива, приравниваем его к нулю
-              //выключаем все картинки, отображаем ту, чей индекс тут
             }
           })
 
